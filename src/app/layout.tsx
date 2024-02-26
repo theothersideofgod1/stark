@@ -3,6 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { Container, Box } from '@mui/material'
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +19,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AppRouterCacheProvider>
+          
+          <Container maxWidth="lg">
+            <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }}>
+              {children}
+            </Box>
+          </Container>
+        </AppRouterCacheProvider>
+      </body>
     </html>
   );
 }
