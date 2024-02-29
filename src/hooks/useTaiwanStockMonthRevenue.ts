@@ -1,5 +1,5 @@
 import { FINMIND_API_URL, FINMIND_TRADE_TOKEN } from "@/lib/contants";
-import fetcher, { ResponseData } from "@/lib/fetcher";
+import fetcher from "@/lib/fetcher";
 import useSWR, { SWRResponse } from "swr";
 
 export interface MonthlyRevenueType {
@@ -30,10 +30,11 @@ export default function useTaiwanStockMonthRevenue(
 
   const { data, error, isLoading }: SWRResponse<TaiwanStockMonthRevenueResponse, Error> = useSWR<TaiwanStockMonthRevenueResponse, Error>(
     [FINMIND_API_URL, { params }],
-    fetcher
+    fetcher,
+    {}
   );
 
-   
+
 
   return {
     data,
