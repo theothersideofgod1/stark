@@ -4,8 +4,9 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
-import { Container, Box } from '@mui/material'
-
+import { Container, ThemeProvider } from '@mui/material'
+import SearchBar from "@/components/SearchBar";
+import theme from "./theme";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,12 +22,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AppRouterCacheProvider>
-          
-          <Container maxWidth="lg">
-            <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }}>
+          <ThemeProvider theme={theme}>
+            <SearchBar />
+            <Container maxWidth="lg" className="p-4">
               {children}
-            </Box>
-          </Container>
+            </Container>
+          </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

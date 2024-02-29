@@ -1,7 +1,6 @@
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <main>xxx</main>
-  );
+  return redirect('/analysis/2330/monthly-revenue')
 }

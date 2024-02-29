@@ -1,0 +1,2 @@
+export const FINMIND_TRADE_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRlIjoiMjAyNC0wMi0yNyAxNDoyMTo0NyIsInVzZXJfaWQiOiJ0aGVvdGhlcnNpZGVvZmdvZCIsImlwIjoiMzYuMjI5LjM3LjYxIn0.HUF08V2Xfh3Jz2UTtG3zkjUWDheO6w0FPUyWKURKKmM'
+export const FINMIND_API_URL = 'https://api.finmindtrade.com/api/v4/data'
