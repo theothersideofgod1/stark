@@ -16,7 +16,7 @@ interface StockInfoTypeResponse {
 
 export default function useTaiwanStockInfo() {
   const { data, error, isLoading } = useSWR<StockInfoTypeResponse>(
-    'xxx',
+    [FINMIND_API_URL,{params: {token: FINMIND_TRADE_TOKEN, dataset: 'TaiwanStockInfo'}}],
     fetcher,
     {}
   );
