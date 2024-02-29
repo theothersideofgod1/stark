@@ -38,6 +38,7 @@ export default function MonthlyRevenueChart({
           type: "value",
           name: "%",
           nameLocation: "end",
+          alignTicks: true,
         },
       ],
       dataset: {
@@ -100,6 +101,7 @@ export default function MonthlyRevenueChart({
       style={{ height: "100%", width: "100%" }}
       option={options}
       notMerge={true}
+      lazyUpdate={true}
     />
   );
 }
