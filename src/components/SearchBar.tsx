@@ -46,7 +46,6 @@ export default function SearchBar() {
         )}
         onChange={handleChange}
         renderInput={(params) => {
-          console.log(params);
           return (
             <TextField
               {...params}
