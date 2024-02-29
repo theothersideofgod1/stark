@@ -104,6 +104,12 @@ export default function MonthlyRevenue() {
         </Box>
         <MonthlyRevenueTable data={revenueWithGroupRate} />
       </Box>
+
+
+      <Box sx={{textAlign: 'right', fontWeight:200}}>
+        <div>圖表單位：千元，數據來自公開資訊觀測站</div>
+        <div>網頁圖表歡迎轉貼引用，請註明出處為財報狗</div>
+      </Box>
     </div>
   );
 }
