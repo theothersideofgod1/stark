@@ -7,9 +7,15 @@ import { createTheme, PaletteOptions, Theme } from "@mui/material";
 
 // Define a custom interface for your theme
 interface CustomPalette extends PaletteOptions {
-  color1?: {
+  blue?: {
     main: string;
   };
+  tableBorderColor: {
+    main: string;
+  }
+  tableRowColor: {
+    main: string;
+  }
   color2?: {
     main: string;
   };
@@ -36,9 +42,9 @@ const theme = createTheme({
   palette: {
     // Define your custom color 'color1'
     text: {
-      primary: '#ff0000',
+      primary: '#434343',
     },
-    color1: {
+    blue: {
       main:  '#0586F4',
     },
     color2: {
@@ -47,6 +53,12 @@ const theme = createTheme({
     color3: {
       main:  '#CB4A4C',
     },
+    tableBorderColor: {
+      main: '#DDDFE2'
+    },
+    tableRowColor: {
+      main: '#F6F8FA'
+    }
   } as CustomPalette,
 } );
 

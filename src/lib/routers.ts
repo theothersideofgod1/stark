@@ -6,6 +6,12 @@ const Routers = [
     children: [],
   },
   {
+    key: "stock-health-check",
+    name: "財務報表",
+    href: "/stock-health-check",
+    children: []
+  },
+  {
     key: "statement",
     name: "財務報表",
     href: "monthly-revenue",

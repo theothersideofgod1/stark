@@ -1,6 +1,6 @@
 import { MonthlyRevenueTypeWithRevenueGroupRate } from "@/lib/getRevenueGroupRate";
 import { Box } from "@mui/material";
-import { ReactElement, useEffect, useRef } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 
 const getTransposedArray = (data: MonthlyRevenueTypeWithRevenueGroupRate[]) => {
   const transposedArray: any = [];
@@ -46,7 +46,8 @@ export default function MonthlyRevenueTable({
   data: MonthlyRevenueTypeWithRevenueGroupRate[];
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const tableRef = useRef<HTMLTableElement>(null);
+
+  const [isTableScrolled, setIsTableScrolled] = useState(false);
 
   useEffect(() => {
     if (ref.current) {
@@ -70,31 +71,111 @@ export default function MonthlyRevenueTable({
     };
   });
 
+  const handleScroll = () => {
+    if(ref.current) {
+      if(ref.current.scrollLeft > 0) {
+        setIsTableScrolled(true)
+      } else {
+        setIsTableScrolled(false)
+      }
+    }
+  }
+
   return (
-    <Box
-      sx={{ color: "#434343" }}
-      className="w-full overflow-y-auto mt-2"
-      ref={ref}
-    >
-      <table className=" table-auto" ref={tableRef}>
+    <Box ref={ref} sx={{
+      overflowY: 'auto',
+      border: 2,
+      borderColor: 'tableBorderColor.main',
+      table: {
+        thead: {
+          tr: {
+            th: {
+              fontWeight: 400,
+              maxWidth: '250px',
+              minWidth: '160px',
+              color: 'text.primary',
+              border: 2,
+              borderColor: 'tableBorderColor.main',
+              textAlign: 'right',
+              padding: '8px',
+              backgroundColor: 'tableRowColor.main',
+              borderTop: 'none',
+              '&:first-child': {
+                position: 'sticky',
+                left: 0,
+                borderLeft: 'none',
+                '&::after': isTableScrolled ? {
+                  display: 'block',
+                  backgroundColor: '#ffffff',
+                  content: `" "`,
+                  position: 'absolute',
+                  top: '-4px',
+                  right: '-5px',
+                  height: 'calc(100% + 4px)',
+                  width: '5px',
+                  borderLeft: 2,
+                  borderLeftColor: 'tableBorderColor.main'
+                } : undefined
+              },
+              '&:last-child': {
+                borderRight: 'none',
+              }
+            }
+          }
+        },
+        tbody: {
+          tr: {
+            fontWeight: 200,
+            '&:nth-child(even)': {
+              td: {
+                backgroundColor: 'tableRowColor.main',
+              }
+            },
+            '&:nth-child(odd)': {
+              td: {
+                backgroundColor: '#ffffff',
+              }
+            },
+            td: {
+              maxWidth: '250px',
+              minWidth: '160px',
+              color: 'text.primary',
+              border: 2,
+              borderColor: 'tableBorderColor.main',
+              textAlign: 'right',
+              padding: '8px',
+              '&:first-child': {
+                position: 'sticky',
+                left: 0,
+                fontWeight: 400,
+                borderLeft: 'none',
+                '&::after': isTableScrolled ? {
+                  display: 'block',
+                  backgroundColor: '#ffffff',
+                  content: `" "`,
+                  position: 'absolute',
+                  top: '-4px',
+                  right: '-5px',
+                  height: 'calc(100% + 4px)',
+                  width: '5px',
+                  borderLeft: 2,
+                  borderLeftColor: 'tableBorderColor.main'
+                } : undefined
+              },
+              '&:last-child': {
+                borderRight: 'none',
+              }
+            }
+          }
+        }
+      }
+    }}
+    onScroll={handleScroll}>
+      <table>
         <thead>
           <tr>
             {columns.map((column) => (
-              <th
-                key={column.header}
-                className="border-2 first:sticky left-0 bg-white"
-              >
-                <Box
-                  sx={{
-                    color: "#434343",
-                    fontWeight: "400",
-                    textAlign: "right",
-                    padding: "12px",
-                  }}
-                >
-                  {column.header}
-                </Box>
-              </th>
+              <th key={column.header}>{column.header}</th>
             ))}
           </tr>
         </thead>
@@ -104,21 +185,7 @@ export default function MonthlyRevenueTable({
             (row: { [key: string]: string | number }, rowIndex: number) => (
               <tr key={rowIndex}>
                 {columns.map((column, colIndex: number) => (
-                  <td
-                    className=" min-w-48 border-2	 first:sticky left-0 bg-white"
-                    key={colIndex}
-                  >
-                    <Box
-                      sx={{
-                        color: "#434343",
-                        fontWeight: "400",
-                        textAlign: "right",
-                        padding: "12px",
-                      }}
-                    >
-                      {row[column.id]}
-                    </Box>
-                  </td>
+                  <td key={colIndex}>{row[column.id]}</td>
                 ))}
               </tr>
             )

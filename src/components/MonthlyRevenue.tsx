@@ -48,12 +48,12 @@ export default function MonthlyRevenue() {
         height={50}
         display="flex"
         alignItems="center"
-        sx={{ marginBottom: "16px", background: "#ffffff", padding: "12px" }}
+        sx={{ marginBottom: "16px", background: "#ffffff", padding: "12px", fontSize: '18px', borderRadius: '5px' }}
       >
         {`${stock?.stock_name} (${stock?.stock_id})`}
       </Box>
 
-      <Box height={500} sx={{ background: "#ffffff", marginBottom: "16px" }}>
+      <Box height={500} sx={{ background: "#ffffff", marginBottom: "16px", borderRadius: '5px' }}>
         <div className="flex flex-col h-full">
           <div className="h-20 flex flex-row items-center p-4">
             <SectionLabel>每月营收</SectionLabel>
@@ -66,7 +66,23 @@ export default function MonthlyRevenue() {
                 id="period"
                 value={period}
                 onChange={handlePeriodChange}
-                className="bg-blue-500"
+                sx={{
+                  backgroundColor: 'blue.main',
+                  color: '#ffffff',
+                  borderColor: 'blue.main',
+                  '.MuiSvgIcon-root': {
+                    color: '#ffffff'
+                  }
+                }}
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      backgroundColor: 'text.primary',
+                      color: '#ffffff'
+                    }
+                  }
+   
+                }}
               >
                 <MenuItem value={3}>近三年</MenuItem>
                 <MenuItem value={5}>近五年</MenuItem>
@@ -81,11 +97,11 @@ export default function MonthlyRevenue() {
       </Box>
 
       <Box
-        sx={{ background: "#ffffff", marginBottom: "16px", padding: "12px" }}
+        sx={{ background: "#ffffff", marginBottom: "16px", padding: "12px", borderRadius: '5px' }}
       >
-        <div className="flex flex-row">
+        <Box sx={{ display: 'flex', flexDirection: 'row', marginBottom: '16px'}}>
           <SectionLabel>詳細數據</SectionLabel>
-        </div>
+        </Box>
         <MonthlyRevenueTable data={revenueWithGroupRate} />
       </Box>
     </div>

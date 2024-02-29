@@ -6,9 +6,9 @@ export default function SectionLabel({children}:{children:Readonly<ReactNode>}) 
     <Box
       sx={{
         borderRadius: 1,
-        background: '#0000ff',
+        backgroundColor: 'blue.main',
         padding: '12px',
-        color: '#ffffff',
+        color: '#ffffff'
       }}
     >{children}</Box>
   );

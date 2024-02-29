@@ -1,16 +1,14 @@
 import SubMenu from "@/components/SubMenu";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { ReactNode } from "react";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <Grid container spacing={0}>
-      <Grid item xs={3}>
+    <Box sx={{ display: "flex", flexDirection: "row" }}>
+      <Box sx={{ width: "196px" }}>
         <SubMenu />
-      </Grid>
-      <Grid item xs={9}>
-        {children}
-      </Grid>
-    </Grid>
+      </Box>
+      <Box sx={{ flex: 1, minWidth: 0 }}>{children}</Box>
+    </Box>
   );
 }

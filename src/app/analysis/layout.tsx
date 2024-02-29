@@ -1,19 +1,18 @@
 import SideMenu from "@/components/SideMenu";
-import SubMenu from "@/components/SubMenu";
-import { Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import { ReactNode } from "react";
 
 export default function AnalysisLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <Grid container spacing={0}>
-      <Grid item xs={2}>
+    <Box sx={{display: 'flex', flexDirection: 'row'}}>
+      <Box sx={{width: '120px'}}>
         <SideMenu />
-      </Grid>
-      <Grid item xs={10}>
+      </Box>
+      <Box sx={{flex:1, minWidth:0}}> 
         {children}
-      </Grid>
-    </Grid>
+      </Box>
+    </Box>
   );
 }
