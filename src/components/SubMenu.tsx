@@ -13,15 +13,19 @@ export default function SubMenu() {
       {subMenu.map((router) => {
         return (
           <ListItem key={router.name} sx={{
-            fontSize: '13px',
-            '&:hover': {
-              color: 'blue.main',
+            padding: 0,
+            a:{
+              padding: '9px 15px',
+              fontSize: '13px',
+              '&:hover': {
+                color: 'blue.main',
+                borderLeft: 3,
+                borderColor: 'blue.main'
+              },
               borderLeft: 3,
-              borderColor: 'blue.main'
-            },
-            borderLeft: 3,
-            borderColor: subMenuPath === router.href ? 'blue.main' : 'transparent',
-            color: subMenuPath === router.href ? 'blue.main' : 'currentcolor',
+              borderColor: subMenuPath === router.href ? 'blue.main' : 'transparent',
+              color: subMenuPath === router.href ? 'blue.main' : 'currentcolor',
+            }
           }}>
             <Link href={`/analysis/${stock?.stock_id}/${router.href}`}>
               {router.name}
